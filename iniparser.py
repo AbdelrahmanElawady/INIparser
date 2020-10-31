@@ -69,8 +69,8 @@ def get_section(line: str) -> str:
     Returns:
         str: string of the section title
     """
-    if len(line) == 0:
-        raise Exception("Error")
+    if len(line) < 2:
+        raise Exception("Error: Section line can't be shorter than 2")
     return line[1:len(line) - 1]
 
 def get_key_name(line: str) -> str:
@@ -82,7 +82,7 @@ def get_key_name(line: str) -> str:
         str: string of the key name
     """
     if line.find('=') == -1:
-        raise Exception("Error")
+        raise Exception("Error: Key line must have equal sign seperating name and value")
     return line[:line.find('=')]
 
 def get_key_value(line: str) -> str:
@@ -94,5 +94,5 @@ def get_key_value(line: str) -> str:
         str: string of the key value
     """
     if line.find('=') == -1:
-        raise Exception("Error")
+        raise Exception("Error: Key line must have equal sign seperating name and value")
     return line[line.find('=') + 1:]
