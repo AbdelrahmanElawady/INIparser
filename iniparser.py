@@ -11,12 +11,12 @@ def parse(filename: str) -> dict:
     data = {}
     counter = 1
     for line in file:
-        line = line.rstrip()
-        line = line.strip()
+        line = line.rstrip("\n")
         if is_skippable(line):
             counter += 1
             continue
         elif is_section(line):
+            line = line.strip()
             section = get_section(line)
             if len(section) == 0:
                 raise Exception("Error at line " + str(counter) + ": Section can't be empty.")

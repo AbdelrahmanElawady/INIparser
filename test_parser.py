@@ -4,9 +4,9 @@ from iniparser import parse, is_section, is_key, is_skippable, get_section, get_
 data = parse("a.ini")
 print(data)
 
-assert data['owner']['name'] == 'John Doe'
-assert data['owner']['organization'] == 'Acme Widgets Inc.'
-assert data['database']['server'] == '192.0.2.62'
+assert data['owner']['name'] == 'John Doe   '
+assert data['owner']['organization'] == 'Acme Widgets Inc.   '
+assert data['database']['server'] == '192.0.2.62  '
 assert len(data) == 2
 assert len(data['owner']) == 2
 assert len(data['database']) == 3
