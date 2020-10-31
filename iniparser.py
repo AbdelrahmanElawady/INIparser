@@ -13,17 +13,17 @@ def parse(filename: str) -> dict:
     for line in file:
         line = line.rstrip()
         line = line.strip()
-        if isSkippable(line):
+        if is_skippable(line):
             counter += 1
             continue
-        elif isSection(line):
-            section = getSection(line)
+        elif is_section(line):
+            section = get_section(line)
             if len(section) == 0:
                 raise Exception("Error at line " + str(counter) + ": Section can't be empty.")
             data[section] = {}
-        elif isKey(line):
-            keyName = getKeyName(line)
-            keyValue = getKeyValue(line)
+        elif is_key(line):
+            keyName = get_key_name(line)
+            keyValue = get_key_value(line)
             data[section][keyName] = keyValue
         else:
             raise Exception("Error at line " + str(counter))
@@ -31,7 +31,7 @@ def parse(filename: str) -> dict:
     return data
 
 
-def isSection(line: str) -> bool:
+def is_section(line: str) -> bool:
     """
     Determines if the given line is a section or not
     Args:
@@ -41,7 +41,7 @@ def isSection(line: str) -> bool:
     """
     return len(line) > 0 and (line[0] == '[' and line[len(line) - 1] == ']')
 
-def isKey(line: str) -> bool:
+def is_key(line: str) -> bool:
     """
     Determines if the given line is a key or not
     Args:
@@ -51,7 +51,7 @@ def isKey(line: str) -> bool:
     """
     return line.count('=') > 0
 
-def isSkippable(line: str) -> bool:
+def is_skippable(line: str) -> bool:
     """
     Determines if the given line is skippable or not
     Args:
@@ -61,7 +61,7 @@ def isSkippable(line: str) -> bool:
     """
     return len(line) == 0 or line[0] == ';'
 
-def getSection(line: str) -> str:
+def get_section(line: str) -> str:
     """
     Extract the section title from the line
     Args:
@@ -73,7 +73,7 @@ def getSection(line: str) -> str:
         raise Exception("Error")
     return line[1:len(line) - 1]
 
-def getKeyName(line: str) -> str:
+def get_key_name(line: str) -> str:
     """
     Extract the key name from the line
     Args:
@@ -85,7 +85,7 @@ def getKeyName(line: str) -> str:
         raise Exception("Error")
     return line[:line.find('=')]
 
-def getKeyValue(line: str) -> str:
+def get_key_value(line: str) -> str:
     """
     Extract the key value from the line
     Args:

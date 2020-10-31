@@ -1,5 +1,5 @@
 import iniparser
-from iniparser import parse, isSection, isKey, isSkippable, getKeyValue, getKeyName, getSection
+from iniparser import parse, is_section, is_key, is_skippable, get_section, get_key_value, get_key_name
 
 data = parse("a.ini")
 print(data)
@@ -11,28 +11,28 @@ assert len(data) == 2
 assert len(data['owner']) == 2
 assert len(data['database']) == 3
 
-assert isSection("[ab]") == True
-assert isSection("[]") == True
-assert isSection("[ab") == False
+assert is_section("[ab]") == True
+assert is_section("[]") == True
+assert is_section("[ab") == False
 
-assert isSkippable("") == True
-assert isSkippable(";this is a comment") == True
-assert isSkippable("[owner]") == False
+assert is_skippable("") == True
+assert is_skippable(";this is a comment") == True
+assert is_skippable("[owner]") == False
 
-assert isKey("name=v=a=l=u=e") == True
-assert isKey("name=value") == True
-assert isKey("namevalue") == False
+assert is_key("name=v=a=l=u=e") == True
+assert is_key("name=value") == True
+assert is_key("namevalue") == False
 
-assert getSection("[title]") == "title"
-assert getSection("[a[b]]") == "a[b]"
-assert getSection("[]") == ""
+assert get_section("[title]") == "title"
+assert get_section("[a[b]]") == "a[b]"
+assert get_section("[]") == ""
 
-assert getKeyName("name=value") == "name"
-assert getKeyName("name=v=a=l=u=e") == "name"
-assert getKeyName("na=m=e=value") == "na"
-assert getKeyName("=value") == ""
+assert get_key_name("name=value") == "name"
+assert get_key_name("name=v=a=l=u=e") == "name"
+assert get_key_name("na=m=e=value") == "na"
+assert get_key_name("=value") == ""
 
-assert getKeyValue("name=value") == "value"
-assert getKeyValue("name=v=a=l=u=e") == "v=a=l=u=e"
-assert getKeyValue("na=m=e=value") == "m=e=value"
-assert getKeyValue("name=") == ""
+assert get_key_value("name=value") == "value"
+assert get_key_value("name=v=a=l=u=e") == "v=a=l=u=e"
+assert get_key_value("na=m=e=value") == "m=e=value"
+assert get_key_value("name=") == ""
