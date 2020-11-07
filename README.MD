@@ -1,6 +1,6 @@
 INIparser
 =========
-INIparser is a python tool for dealing with INI files
+INIparser is a python tool for dealing with INI files.
 
 Usage
 =====
@@ -9,6 +9,7 @@ import iniparser.py
 iniparser.parse("file.ini") # returns a dict of the data in file.ini
 ```
 file.ini content:
+-----------------
 ```ini
 ; last modified 1 April 2001 by John Doe
 [owner]
@@ -22,6 +23,7 @@ port=143
 file="payronll.dat"
 ```
 output:
+-------
 ```json
 {
    "owner":{
@@ -37,8 +39,8 @@ output:
 ```
 Specifications
 =====
-* No global keys
-* Comments only start with ';'
-* Usage of the same key name will overwrite previous value
-* No section nesting
-* No whitespaces stripped from key lines
+* Comments only start with ';'.
+* Usage of the same key name will overwrite previous value.
+* Doesn't strip whitespaces from key lines.
+* Doesn't support global keys.
+* Doesn't support section nesting.
